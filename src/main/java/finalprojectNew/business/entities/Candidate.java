@@ -14,7 +14,7 @@ public class Candidate {
 	private String address;
 	private String email;
 	private String linkedInUrl;
-	private long phoneNumber;
+	private String phoneNumber;
 	private String username;
 
 	@OneToMany
@@ -29,7 +29,7 @@ public class Candidate {
 	}
 
 	public Candidate(String name, String address, String email,
-					 String linkedInUrl, long phoneNumber, String username) {
+					 String linkedInUrl, String phoneNumber, String username) {
 		this.name = name;
 		this.address = address;
 		this.email = email;
@@ -73,10 +73,10 @@ public class Candidate {
 		this.linkedInUrl = linkedInUrl;
 	}
 
-	public long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

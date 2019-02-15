@@ -2,7 +2,6 @@ package finalprojectNew.business.request;
 
 import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 public class UserRegistrationRequest {
 
@@ -26,7 +25,7 @@ public class UserRegistrationRequest {
 	private String linkedInUrl;
 
 	@NotNull
-	private long phoneNumber;
+	private String phoneNumber;
 
 	public String getUsername() {
 		return username;
@@ -77,10 +76,10 @@ public class UserRegistrationRequest {
 		this.address = address;
 	}
 
-	public long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

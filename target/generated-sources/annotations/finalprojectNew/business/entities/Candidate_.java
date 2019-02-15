@@ -10,7 +10,7 @@ public abstract class Candidate_ {
 
 	public static volatile SingularAttribute<Candidate, String> address;
 	public static volatile SingularAttribute<Candidate, String> linkedInUrl;
-	public static volatile SingularAttribute<Candidate, Long> phoneNumber;
+	public static volatile SingularAttribute<Candidate, String> phoneNumber;
 	public static volatile SingularAttribute<Candidate, String> name;
 	public static volatile SingularAttribute<Candidate, Long> id;
 	public static volatile SingularAttribute<Candidate, String> email;

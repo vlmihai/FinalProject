@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
-import java.util.Date;
 
 @Controller
 @RequestMapping(URLMapper.REGISTRATION)
@@ -67,7 +66,7 @@ public class RegistrationController {
 		if (Role.candidate.name().equalsIgnoreCase(userRegistrationRequest.getRole())) {
 
 			String linkedInUrl = userRegistrationRequest.getLinkedInUrl();
-			long phoneNumber = userRegistrationRequest.getPhoneNumber();
+			String phoneNumber = userRegistrationRequest.getPhoneNumber();
 
 			candidateRepository.save(
 					new Candidate(name, address, email, linkedInUrl, phoneNumber, username));

@@ -71,7 +71,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Recruit.ed</a>
+					<a class="navbar-brand" href="#">CoreRecruit.ro</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
@@ -83,11 +83,11 @@
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="./">Questions? Call us at
-								1-866-204-6764 <span class="sr-only">(current)</span>
+						<li class="active"><a href="./">Questions? Contact us at
+								office@core-recruit.ro <span class="sr-only">(current)</span>
 						</a></li>
 
-						<li>Welcome, Name : $employer.Name</li>
+						<li>Welcome, Name : $employer.name</li>
 
 						<li><a href="logout.htm" class="btn btn-info" role="button">Logout</a></li>
 
@@ -104,9 +104,9 @@
 					<tr>
 						<th>NAME</th>
 						<th>EMAIL</th>
-						<th>UNIVERSITY NAME</th>
+						<th>ADDRESS</th>
 						<th>LINKEDIN URL</th>
-						<th>GPA</th>
+						<th>PHONE NUMBER</th>
 						<th>CURRENT STATUS</th>
 						<th>ACTIONS</th>
 					</tr>
@@ -116,9 +116,9 @@
 						<tr>
 							<td>${candidate.Name}</td>
 							<td>${candidate.email}</td>
-							<td>${candidate.univName}</td>
+							<td>${candidate.address}</td>
 							<td>${candidate.linkedInUrl}</td>
-							<td>${candidate.gpa}</td>
+							<td>${candidate.phoneNumber}</td>
 							<td>${candidate.applicationStatus.toUpperCase()}</td>
 							<td>#if($candidate.applicationStatus == "applied" || $candidate.applicationStatus == "rejected")
 								<a href="employer_update_application_status.htm?jobId=${jobId}&candidateId=${candidate.id}&status=accepted" 

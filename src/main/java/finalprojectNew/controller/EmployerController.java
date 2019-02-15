@@ -51,13 +51,16 @@ public class EmployerController {
 		Employer employer = employerRepository.findByUsername(auth.getName());
 //		System.out.println(auth.getName()+"iii");
 		model.addAttribute("jobs", jobRepository.findByEmployerId(employer.getId()));
+		model.addAttribute("employer",employer);
 		return ViewMapper.EMPLOYER_JOB_LISTING;
 	}
 
 	@RequestMapping(value = URLMapper.EMPLOYER_POST_JOB_URL, method = RequestMethod.GET)
-	public String loadPostJobPage(Model model) {
+	public String loadPostJobPage(Model model, Authentication auth) {
+		Employer employer = employerRepository.findByUsername(auth.getName());
 		model.addAttribute(POST_JOB_MODEL, new Job());
 		model.addAttribute("employer_post_job_url", URLMapper.EMPLOYER_POST_JOB_URL);
+		model.addAttribute("employer",employer);
 		return ViewMapper.EMPLOYER_POST_JOB;
 	}
 
@@ -76,6 +79,7 @@ public class EmployerController {
 		Employer employer = employerRepository.findByUsername(auth.getName());
 //		System.out.println(auth.getName()+"iii");
 		model.addAttribute("jobs", jobRepository.findByEmployerId(employer.getId()));
+		model.addAttribute("employer",employer);
 		String name = job.getName();
 		String description = job.getDescription();
 		String experience = job.getExperience();
@@ -105,25 +109,32 @@ public class EmployerController {
 			@RequestParam("jobId") Long jobId,
 			@RequestParam("candidateId") Long candidateId,
 			@RequestParam("status") String status,
-			Authentication auth
+			Authentication auth,
+			Model model
 	) {
 		CandidateApplication candidateApplication = candidateApplicationRepository.
 				findByJobIdAndCandidateId(jobId, candidateId);
 
+		Employer employer = employerRepository.findByUsername(auth.getName());
 		candidateApplication.setApplicationStatus(status);
 		candidateApplication.setEmployerActionOn(new Date());
 
 		candidateApplicationRepository.save(candidateApplication);
+		model.addAttribute("employer",employer);
+
 
 		return "redirect:" + URLMapper.EMPLOYER_VIEW_JOB_RESPONSES + "?jobId=" + jobId;
 	}
 
 	@RequestMapping(value = URLMapper.EMPLOYER_UPDATE_JOB_URL, method = RequestMethod.GET)
-	public String loadUpdateJobPage(Model model, @RequestParam(value = "jId") String jobId) {
+	public String loadUpdateJobPage(Model model, @RequestParam(value = "jId") String jobId, Authentication auth) {
 		Job job = jobRepository.getOne(Long.parseLong(jobId));
+		Employer employer = employerRepository.findByUsername(auth.getName());
+
 
 		model.addAttribute(UPDATE_JOB_MODEL, job);
 		model.addAttribute("employer_update_job_url", URLMapper.EMPLOYER_UPDATE_JOB_URL);
+		model.addAttribute("employer",employer);
 
 		return ViewMapper.EMPLOYER_UPDATE_JOB;
 	}
@@ -171,14 +182,16 @@ public class EmployerController {
 	}
 
 	@RequestMapping(value = URLMapper.EMPLOYER_DELETE_JOB_URL, method = RequestMethod.GET)
-	public String deleteJobPage(Model model, @RequestParam(value = "jId") String jobId) {
+	public String deleteJobPage(Model model, @RequestParam(value = "jId") String jobId, Authentication auth) {
 		Job job = jobRepository.getOne(Long.parseLong(jobId));
+		Employer employer = employerRepository.findByUsername(auth.getName());
 
 		job.setUpdatedOn(new Date());
 		job.setStatus("deactive");
 		job.setDeleted(true);
 
 		jobRepository.save(job);
+		model.addAttribute("employer",employer);
 
 		return "redirect:" + URLMapper.EMPLOYER_JOB_LISTING_URL;
 	}
@@ -187,6 +200,7 @@ public class EmployerController {
 	public String loadResponses(@RequestParam(value = "jobId", required = true) Long jobId, Model model,
 								Authentication auth) {
 		List<Candidate> appliedCandidates = null;
+		Employer employer = employerRepository.findByUsername(auth.getName());
 
 		List<CandidateApplication> appliedCandidateIds = candidateApplicationRepository.findByJobId(jobId);
 		if (CollectionUtils.isNotEmpty(appliedCandidateIds)) {
@@ -201,6 +215,7 @@ public class EmployerController {
 		}
 		model.addAttribute("appliedCandidates", appliedCandidates);
 		model.addAttribute("jobId", jobId);
+		model.addAttribute("employer",employer);
 
 		return ViewMapper.EMPLOYER_VIEW_JOB_RESPONSES;
 	}

@@ -99,7 +99,7 @@ $(".candidate").hide();
 
 					<div class="input-group candidate">
 						<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-						<input type="tel" class="form-control" name="phoneNumber"
+						<input type="text" class="form-control" name="phoneNumber"
 							placeholder="Phone number" size="100">
 					</div>	
 					
