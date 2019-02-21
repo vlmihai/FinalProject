@@ -12,6 +12,8 @@ import finalprojectNew.util.ViewMapper;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -92,5 +94,13 @@ public class CandidateController {
 		candidateApplicationRepository.save(new CandidateApplication(candidate, job, Status.applied.name(), new Date()));
 
 		return "redirect:"+ URLMapper.CANDIDATE_JOBS;
+	}
+
+	@RequestMapping("/testThyme")
+	public String viewAllVacancies(Model model) {
+		List<Candidate> candidates =candidateRepository.findAll();
+
+		model.addAttribute("candidates", candidates);
+		return "testThyme";
 	}
 }
