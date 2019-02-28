@@ -1,4 +1,4 @@
-package com.example;
+package finalprojectNew;
 
 import finalprojectNew.Application;
 import org.junit.Test;

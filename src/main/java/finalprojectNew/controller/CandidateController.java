@@ -35,6 +35,7 @@ public class CandidateController {
 	@Autowired
 	CandidateRepository candidateRepository;
 
+
 	@RequestMapping(value = URLMapper.CANDIDATE_JOBS)
 	public String candidateViewJobs(Model model, Authentication auth) {
 		Candidate candidate = candidateRepository.findByUsername(auth.getName());

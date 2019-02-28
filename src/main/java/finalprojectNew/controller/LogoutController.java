@@ -23,4 +23,5 @@ public class LogoutController {
 										// but generally it's a good practice to
 										// show login screen again.
 	}
+
 }
